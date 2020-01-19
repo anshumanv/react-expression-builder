@@ -1,0 +1,42 @@
+{
+	"name": "react-expression-editor",
+	"version": "1.0.0",
+	"description": "A react component to build expressions",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"start": "styleguideist server"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/anshumanv/react-expression-builder.git"
+	},
+	"keywords": [
+		"react",
+		"component",
+		"expression",
+		"statement",
+		"build"
+	],
+	"author": "anshumanv",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/anshumanv/react-expression-builder/issues"
+	},
+	"homepage": "https://github.com/anshumanv/react-expression-builder#readme",
+	"peerDependencies": {
+		"react": "^16.12.0",
+		"react-dom": "^16.12.0"
+	},
+	"devDependencies": {
+		"@babel/core": "^7.8.3",
+		"@babel/plugin-proposal-class-properties": "^7.8.3",
+		"@babel/preset-env": "^7.8.3",
+		"@babel/preset-react": "^7.8.3",
+		"babel-loader": "^8.0.6",
+		"react": "^16.12.0",
+		"react-dom": "^16.12.0",
+		"react-styleguidist": "^10.6.0",
+		"webpack": "^4.41.5"
+	}
+}
