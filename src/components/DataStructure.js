@@ -1,5 +1,3 @@
-const type = ['fn', 'string']
-
 export class TreeNode {
 	constructor(value) {
 		this.value = value
@@ -13,9 +11,13 @@ export class TreeNode {
 	setValue(val) {
 		this.value = val
 	}
+
+	clearChildren() {
+		this.children = []
+	}
 }
 
-class EditorState {
+export class EditorState {
 	constructor() {
 		this.root = null
 	}
@@ -25,8 +27,7 @@ class EditorState {
 	}
 
 	buildExpression = (node = this.root) => {
-		console.log(node)
-		if (!node.value) return 'bruh'
+		// console.log(node)
 		let str = ''
 		if (node.value.type === 'string') return node.value.data
 		node.children.forEach((child, idx) => {
@@ -40,5 +41,3 @@ class EditorState {
 		if (!this.root) this.root = new TreeNode(value)
 	}
 }
-
-export default EditorState

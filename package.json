@@ -1,7 +1,7 @@
 {
-	"name": "react-expression-editor",
+	"name": "react-function",
 	"version": "1.0.0",
-	"description": "A react component to build expressions",
+	"description": "A bare-bones react component to build function expressions",
 	"main": "index.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
@@ -9,7 +9,7 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/anshumanv/react-expression-builder.git"
+		"url": "git+https://github.com/anshumanv/react-function.git"
 	},
 	"keywords": [
 		"react",
@@ -21,9 +21,9 @@
 	"author": "anshumanv",
 	"license": "MIT",
 	"bugs": {
-		"url": "https://github.com/anshumanv/react-expression-builder/issues"
+		"url": "https://github.com/anshumanv/react-function/issues"
 	},
-	"homepage": "https://github.com/anshumanv/react-expression-builder#readme",
+	"homepage": "https://github.com/anshumanv/react-function#readme",
 	"peerDependencies": {
 		"react": "^16.12.0",
 		"react-dom": "^16.12.0"
@@ -38,5 +38,8 @@
 		"react-dom": "^16.12.0",
 		"react-styleguidist": "^10.6.0",
 		"webpack": "^4.41.5"
+	},
+	"dependencies": {
+		"downshift": "^4.0.7"
 	}
 }

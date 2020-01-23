@@ -1,4 +1,4 @@
-export default [
+export const functions = [
 	{
 		value: 'SPLIT (dim, delimiter, occurrence_number)',
 		label: 'SPLIT',
@@ -33,5 +33,22 @@ export default [
 		type: 'function',
 		helper:
 			'Returns a substring between the first prefix_string and first suffix_string'
+	}
+]
+
+export const staticValues = [
+	{
+		value: 'ACCOUNT',
+		label: 'ACCOUNT',
+		type: 'dimension',
+		key: 'account',
+		helper: 'Account dimension'
+	},
+	{
+		value: 'AD',
+		label: 'AD',
+		type: 'dimension',
+		key: 'ad',
+		helper: 'Account ad'
 	}
 ]

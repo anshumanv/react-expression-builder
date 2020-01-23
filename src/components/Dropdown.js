@@ -1,116 +1,150 @@
 import React, { useRef, useState, useEffect } from 'react'
 import Exp from './Expression'
-import { TreeNode } from './DataStructure'
-import fn from '../helpers/functions'
+import DownSelect from './DownSelect'
 
 const Drop = props => {
-	const { setDrop, placeholder, node, setNode, level, EditorData } = props
+	const {
+		placeholder,
+		EditorData,
+		node,
+		initialFocus = false,
+		options,
+		validationFn
+	} = props
 
 	const [value, setValue] = useState('')
 	const [exp, setExp] = useState(false)
-	const [valid, setValid] = useState(true)
+	// use it later for validation
 	const dropRef = useRef(null)
 
 	useEffect(() => {
-		if (dropRef.current) dropRef.current.focus()
+		if (dropRef.current && initialFocus) {
+			dropRef.current.focus()
+			// console.log(dropRef.current, initialFocus)
+		}
+		// console.log(node)
 		// console.log(document.activeElement)
-	}, [dropRef])
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [dropRef.current])
 
-	const fnKeys = fn.map(fn => fn.key)
+	const fnKeys = options.filter(fn => fn.type === 'function').map(fn => fn.key)
 	const stringRegex = /"([^\\"]|\\")*"/
-	const handleBlur = e => {
-		if (!value) setDrop(false)
-	}
+	// const handleBlur = e => {
+	// 	if (!value) setDrop(false)
+	// }
 
 	const handleValueChange = e => {
-		console.log(EditorData.buildExpression())
 		const val = e.target.value.toLowerCase()
 		// const newNode = new TreeNode(val)
 		node.setValue({ data: val, type: 'string' })
-		runValidation(val)
 		setValue(val)
 		if (fnKeys.includes(val)) {
 			setExp(true)
-			node.setValue({ data: fn.find(f => f.key === val), type: 'fn' }) // todo
+			node.setValue({ data: options.find(f => f.key === val), type: 'fn' }) // todo
 		}
-	}
-
-	const runValidation = val => {
-		setTimeout(() => {
-			if (!isNaN(val) || stringRegex.test(val)) {
-				setValid(true)
-			} else setValid(false)
-		}, 2000)
+		console.log(EditorData.buildExpression())
 	}
 
 	const getNextNode = () => {
-		return dropRef.current.parentNode.nextElementSibling.firstElementChild
-			? dropRef.current.parentNode.nextElementSibling.firstElementChild
-			: dropRef.current.parentNode.nextElementSibling
+		let currElement = dropRef.current.parentElement
+		// if the present element has a next sibling, directly switch to next
+		if (currElement.nextElementSibling)
+			currElement = currElement.nextElementSibling
+		// else keep going levels up till you find a next node
+		// else {
+		// 	currElement = currElement.parentNode
+		// }
+		// this is when you want to skip the top levels and only play in text fields
+		else {
+			while (!currElement.nextElementSibling)
+				currElement = currElement.parentElement
+			currElement = currElement.nextElementSibling
+		}
+		// while (rootClasses.includes(finalElement.dataset.type)) {
+		// 	finalElement = finalElement.firstElementChild
+		// }
+
+		if (currElement.dataset.type !== 'expression-root')
+			currElement = currElement.firstElementChild
+
+		return currElement
 	}
 
 	const getPrevNode = () => {
-		return dropRef.current.parentNode.previousElementSibling.firstElementChild
-			? dropRef.current.parentNode.previousElementSibling.firstElementChild
-			: dropRef.current.parentNode.previousElementSibling
+		let currElement = dropRef.current.parentElement
+		// if the present element has a next sibling, directly switch to next
+		if (currElement.previousElementSibling)
+			currElement = currElement.previousElementSibling
+		// else {
+		// 	currElement = currElement.parentNode
+		// }
+		// else keep going levels up till you find a next node
+		else {
+			if (!currElement.previousElementSibling)
+				currElement = currElement.parentElement
+			// if (currElement.dataset.type === 'expression-root' && initialFocus)
+			// 	return currElement
+			// currElement = currElement.lastElementChild
+		}
+		// some transitions as per the element we arrive on
+		while (currElement.dataset.type === 'expression-root' && !initialFocus) {
+			currElement = currElement.lastElementChild
+		}
+		if (currElement.dataset.type === 'expression-input-root') {
+			currElement = currElement.firstElementChild
+		}
+		// console.log(currElement)
+		return currElement
 	}
 
 	const handleDir = e => {
 		e.stopPropagation()
-		console.log(e.keyCode, e.key, dropRef.current)
-		if (dropRef.current) {
-			switch (e.keyCode) {
-				case 39:
-					const nextNode = getNextNode()
-					nextNode && nextNode.focus()
-					return
-				case 37:
-					const prevNode = getPrevNode()
-					prevNode && prevNode.focus()
-					return
-				default:
-					return
-			}
+		const inputNode = dropRef.current
+		switch (e.keyCode) {
+			case 39:
+				// only when I'm at last caret position
+				if (inputNode.selectionStart !== inputNode.value.length) return
+				e.preventDefault()
+				const nextNode = getNextNode()
+				nextNode && nextNode.focus()
+				return
+			case 37:
+				// only when at caret position is 0
+				if (inputNode.selectionStart !== 0) return
+				e.preventDefault()
+				const prevNode = getPrevNode()
+				prevNode && prevNode.focus()
+				return
+			default:
+				return
 		}
 	}
 
 	if (!exp) {
 		// this is an approximation
-		let inputLen = `${(value
-			? value.length
-			: placeholder && placeholder.length) * 8}px`
+		// let inputLen = `${(value
+		// 	? value.length
+		// 	: placeholder && placeholder.length) * 8}px`
 		// if (dropRef.current) inputLen = dropRef.current.scrollWidth
-
 		return (
-			<div onBlur={handleBlur}>
-				<input
-					ref={dropRef}
-					placeholder={placeholder}
-					style={{
-						color: valid ? 'black' : 'red',
-						width: inputLen,
-						border: '2px solid red'
-					}}
-					type="text"
-					list="functions"
-					onKeyDown={e => handleDir(e)}
-					onChange={handleValueChange}
-				/>
-				<datalist id="functions">
-					<option>Extract</option>
-					<option>Split</option>
-					<option>Sub</option>
-					<option>Concat</option>
-				</datalist>
-			</div>
+			<DownSelect
+				inputRef={dropRef}
+				inputPlaceholder={placeholder}
+				options={options}
+				onKeyDown={e => handleDir(e)}
+				inputValue={value}
+				validationFn={validationFn}
+				handleValueChange={handleValueChange}
+			/>
 		)
 	}
 	return (
 		<Exp
 			EditorData={EditorData}
+			options={options}
 			setExp={setExp}
+			setValue={setValue}
 			node={node}
-			setNode={setNode}
 			fname={value}
 		/>
 	)

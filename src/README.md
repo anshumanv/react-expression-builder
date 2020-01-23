@@ -1,6 +1,6 @@
 A very simple button.
 
 ```jsx
-import Editor from './'
-;<Editor text="We Salute You!" />
+import Editor from './Test'
+;<Editor text="Hey!" />
 ```
