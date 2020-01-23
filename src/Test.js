@@ -1,5 +1,5 @@
 import React from 'react'
-import Drop, { EditorState, TreeNode } from './components'
+import Drop, { EditorState, TreeNode } from '.'
 import { functions, staticValues } from './helpers/functions'
 
 const options = [...functions, ...staticValues]
