@@ -3,7 +3,15 @@ import Drop from './Dropdown'
 import { TreeNode } from './DataStructure'
 
 const Exp = props => {
-	const { fname, node, EditorData, setExp, options, setValue } = props
+	const {
+		fname,
+		node,
+		EditorData,
+		setExp,
+		options,
+		setValue,
+		onChangeFn
+	} = props
 	const [rootFocus, setRootFocus] = useState(false)
 	const expressionRoot = useRef(null)
 	// find function metadata as per the given key.
@@ -13,7 +21,7 @@ const Exp = props => {
 		// create nodes for all children of the given function
 		const { params } = fnData
 		params.forEach(param => {
-			const refNode = new TreeNode({ data: '', type: 'string' })
+			const refNode = new TreeNode({ data: param, type: 'string' })
 			node.addChild(refNode)
 		})
 	}, [fnData, node])
@@ -68,6 +76,7 @@ const Exp = props => {
 				<Drop
 					EditorData={EditorData}
 					key={i + param}
+					onChangeFn={onChangeFn}
 					options={options}
 					node={node.children && node.children[i]}
 					initialFocus={i === 0}

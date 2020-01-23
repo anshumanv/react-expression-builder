@@ -47,7 +47,7 @@ const DropdownCombobox = props => {
 					target: {
 						value:
 							state.highlightedIndex > -1
-								? actionAndChanges.changes.selectedItem.label
+								? actionAndChanges.changes.selectedItem.key
 								: actionAndChanges.changes.inputValue || ''
 					}
 				})
@@ -55,11 +55,10 @@ const DropdownCombobox = props => {
 					...actionAndChanges.changes,
 					// if we had an item highlighted in the previous state.
 					...(state.highlightedIndex > -1 && {
-						inputValue: actionAndChanges.changes.selectedItem.label
+						inputValue: actionAndChanges.changes.selectedItem.key.toUpperCase()
 					})
 				}
 			case useCombobox.stateChangeTypes.InputBlur:
-				console.log('hgey this is not working')
 				setHasFocus(false)
 				return {
 					action: actionAndChanges.changes
@@ -69,18 +68,11 @@ const DropdownCombobox = props => {
 		}
 	}
 
-	const blurFn = e => {
-		console.log(e)
-		// const timer = setTimeout(() => {
-		// 	setHasFocus(false)
-		// }, 1000)
-	}
-
 	const {
-		// isOpen,
-		// selectedItem,
-		// getToggleButtonProps,
-		// getLabelProps,
+		isOpen,
+		selectedItem,
+		getToggleButtonProps,
+		getLabelProps,
 		getMenuProps,
 		getInputProps,
 		getComboboxProps,
@@ -94,9 +86,7 @@ const DropdownCombobox = props => {
 		onInputValueChange: ({ inputValue }) => {
 			setInputItems(
 				options.filter(item => {
-					return item.key
-						.toLowerCase()
-						.includes(inputValue.trim().toLowerCase())
+					return item.key.toLowerCase().startsWith(inputValue.toLowerCase())
 				})
 			)
 			// check if the input value is present in any of the option
@@ -106,9 +96,7 @@ const DropdownCombobox = props => {
 			)
 			if (isPresentInOptions) {
 				setValueType(isPresentInOptions.type)
-				setHasFocus(false)
 			} else {
-				setHasFocus(true)
 				setValueType('string') // can also use typeof formattedInputValue but it will result in string anyways
 			}
 		},
@@ -129,8 +117,7 @@ const DropdownCombobox = props => {
 						value: inputValue,
 						ref: inputRef,
 						placeholder: inputPlaceholder,
-						onFocus: () => setHasFocus(true),
-						onBlur: blurFn
+						onFocus: () => setHasFocus(true)
 					})}
 					data-valid={valid}
 					data-value-type={valueType}

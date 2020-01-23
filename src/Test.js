@@ -9,6 +9,10 @@ const stringRegex = /"([^\\"]|\\")*"/
 const cb1 = () => alert('valid!')
 const cb2 = () => alert('invalid!')
 
+const onChangeFn = st => console.log('change', st)
+const expressionRootClass = 'root-class'
+const expressionInputClass = 'input-class'
+
 const validationFn = val => {
 	// mock api request
 	const res = !isNaN(val) || stringRegex.test(val)
@@ -25,7 +29,10 @@ const Root = props => {
 		<>
 			<Drop
 				EditorData={EditorData}
+				onChangeFn={onChangeFn}
 				node={rootNode}
+				expressionRootClass={expressionRootClass}
+				expressionInputClass={expressionInputClass}
 				options={options}
 				placeholder="Enter your expression"
 				initialFocus={true}

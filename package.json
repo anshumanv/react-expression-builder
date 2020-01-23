@@ -1,15 +1,15 @@
 {
-	"name": "react-function",
+	"name": "react-expression-builder",
 	"version": "1.0.0",
 	"description": "A bare-bones react component to build function expressions",
 	"main": "index.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"start": "styleguideist server"
+		"start": "node_modules/react-styleguidist/lib/bin/styleguidist.js server"
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/anshumanv/react-function.git"
+		"url": "git+https://github.com/anshumanv/react-expression-builder.git"
 	},
 	"keywords": [
 		"react",
@@ -21,9 +21,9 @@
 	"author": "anshumanv",
 	"license": "MIT",
 	"bugs": {
-		"url": "https://github.com/anshumanv/react-function/issues"
+		"url": "https://github.com/anshumanv/react-expression-builder/issues"
 	},
-	"homepage": "https://github.com/anshumanv/react-function#readme",
+	"homepage": "https://github.com/anshumanv/react-expression-builder#readme",
 	"peerDependencies": {
 		"react": "^16.12.0",
 		"react-dom": "^16.12.0"
