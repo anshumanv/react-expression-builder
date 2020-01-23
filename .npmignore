@@ -2,3 +2,4 @@ src
 demo
 .babelrc
 webpack.config.js
+styleguide.config.js
