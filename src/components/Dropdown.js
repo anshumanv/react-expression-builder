@@ -10,7 +10,9 @@ const Drop = props => {
 		initialFocus = false,
 		options,
 		validationFn,
-		onChangeFn
+		onChangeFn,
+		expressionRootClass,
+		expressionInputClass
 	} = props
 
 	const [value, setValue] = useState('')
@@ -138,6 +140,7 @@ const Drop = props => {
 				onKeyDown={e => handleDir(e)}
 				inputValue={value}
 				validationFn={validationFn}
+				expressionInputClass={expressionInputClass}
 				handleValueChange={handleValueChange}
 			/>
 		)
@@ -150,6 +153,8 @@ const Drop = props => {
 			setValue={setValue}
 			node={node}
 			onChangeFn={onChangeFn}
+			expressionRootClass={expressionRootClass}
+			expressionInputClass={expressionInputClass}
 			fname={value}
 		/>
 	)

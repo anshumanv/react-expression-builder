@@ -3,7 +3,7 @@ import { useCombobox } from 'downshift'
 
 const menuStyles = {
 	backgroundColor: 'white',
-	highlightedIndex: 'lightgray',
+	highlightedIndex: '#f2f2f2',
 	fontWeight: 'normal'
 }
 
@@ -15,7 +15,8 @@ const DropdownCombobox = props => {
 		handleValueChange,
 		options,
 		validationFn,
-		inputValue
+		inputValue,
+		expressionInputClass
 	} = props
 	const [inputItems, setInputItems] = useState(options)
 	const [hasFocus, setHasFocus] = useState(false)
@@ -109,6 +110,7 @@ const DropdownCombobox = props => {
 				style={{ display: 'inline-block' }}
 				data-type="expression-input-root"
 				{...getComboboxProps()}
+				className={expressionInputClass}
 			>
 				<input
 					{...getInputProps({
@@ -132,7 +134,7 @@ const DropdownCombobox = props => {
 							<li
 								style={
 									highlightedIndex === index
-										? { backgroundColor: '#bde4ff' }
+										? { backgroundColor: '#f2f2f2' }
 										: {}
 								}
 								key={`${item.key}${index}`}

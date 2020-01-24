@@ -10,7 +10,9 @@ const Exp = props => {
 		setExp,
 		options,
 		setValue,
-		onChangeFn
+		onChangeFn,
+		expressionRootClass = '',
+		expressionInputClass
 	} = props
 	const [rootFocus, setRootFocus] = useState(false)
 	const expressionRoot = useRef(null)
@@ -78,6 +80,8 @@ const Exp = props => {
 					key={i + param}
 					onChangeFn={onChangeFn}
 					options={options}
+					expressionInputClass={expressionInputClass}
+					expressionRootClass={expressionRootClass}
 					node={node.children && node.children[i]}
 					initialFocus={i === 0}
 					placeholder={param}
@@ -90,6 +94,7 @@ const Exp = props => {
 			<>
 				<span
 					ref={expressionRoot}
+					className={expressionRootClass}
 					data-type="expression-root"
 					onKeyDown={handleKeyDown}
 					onFocus={() => setRootFocus(true)}
