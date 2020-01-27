@@ -39,14 +39,14 @@ export const functions = [
 export const staticValues = [
 	{
 		value: 'ACCOUNT',
-		label: 'ACCOUNT',
+		label: 'Account',
 		type: 'dimension',
 		key: 'account',
 		helper: 'Account dimension'
 	},
 	{
 		value: 'AD',
-		label: 'AD',
+		label: 'Ad',
 		type: 'dimension',
 		key: 'ad',
 		helper: 'Account ad'

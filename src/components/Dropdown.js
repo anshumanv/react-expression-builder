@@ -17,6 +17,7 @@ const Drop = props => {
 
 	const [value, setValue] = useState('')
 	const [exp, setExp] = useState(false)
+	const [hasFocus, setHasFocus] = useState(true)
 	// use it later for validation
 	const [valid, setValid] = useState(true)
 	const dropRef = useRef(null)
@@ -38,12 +39,11 @@ const Drop = props => {
 	// }
 
 	const handleValueChange = e => {
-		const val = e.target.value.toLowerCase()
-		// console.log({val})
+		const val = e.target.value
 		// const newNode = new TreeNode(val)
 		node.setValue({ data: val, type: 'string' })
 		setValue(val)
-		if (fnKeys.includes(val)) {
+		if (fnKeys.includes(val.toLowerCase())) {
 			setExp(true)
 			node.setValue({ data: options.find(f => f.key === val), type: 'fn' }) // todo
 		}

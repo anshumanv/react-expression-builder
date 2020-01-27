@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useCombobox } from 'downshift'
 
 const menuStyles = {
 	backgroundColor: 'white',
 	highlightedIndex: '#f2f2f2',
-	fontWeight: 'normal'
+	fontWeight: 'normal',
+	position: 'absolute'
 }
 
 const DropdownCombobox = props => {
@@ -22,6 +23,30 @@ const DropdownCombobox = props => {
 	const [hasFocus, setHasFocus] = useState(false)
 	const [valid, setValid] = useState(true)
 	const [valueType, setValueType] = useState('string')
+	const matchesAnInput = inputItems.find(item => item.label === inputValue)
+
+	useEffect(() => {
+		setInputItems(
+			options.filter(item => {
+				return item.key.toLowerCase().startsWith(inputValue.toLowerCase())
+			})
+		)
+		if (validationFn) {
+			validationFn(inputValue) || matchesAnInput
+				? setValid(true)
+				: setValid(false)
+		}
+	}, [inputValue])
+
+	const handleValueTypeChange = val => {
+		// check if the input value is present in any of the option
+		const isPresentInOptions = options.find(option => option.label === val)
+		if (isPresentInOptions) {
+			setValueType(isPresentInOptions.type)
+		} else {
+			setValueType('string') // can also use typeof formattedInputValue but it will result in string anyways
+		}
+	}
 
 	const stateReducer = (state, actionAndChanges) => {
 		// this prevents the menu from being closed when the user selects an item with 'Enter' or mouse
@@ -29,11 +54,13 @@ const DropdownCombobox = props => {
 		const { stateChangeTypes } = useCombobox
 		switch (actionAndChanges.type) {
 			case stateChangeTypes.InputChange:
-				if (validationFn) {
-					validationFn(actionAndChanges.changes.inputValue)
-						? setValid(true)
-						: setValid(false)
-				}
+				// if (validationFn) {
+				// 	if (!matchesAnInput) {
+				// 		validationFn(actionAndChanges.changes.inputValue)
+				// 			? setValid(true)
+				// 			: setValid(false)
+				// 	}
+				// }
 				return {
 					// return normal changes.
 					...actionAndChanges.changes,
@@ -48,10 +75,13 @@ const DropdownCombobox = props => {
 					target: {
 						value:
 							state.highlightedIndex > -1
-								? actionAndChanges.changes.selectedItem.key
+								? actionAndChanges.changes.selectedItem.label
 								: actionAndChanges.changes.inputValue || ''
 					}
 				})
+				if (state.highlightedIndex > -1) {
+					handleValueTypeChange(actionAndChanges.changes.selectedItem.label)
+				}
 				return {
 					...actionAndChanges.changes,
 					// if we had an item highlighted in the previous state.
@@ -60,6 +90,7 @@ const DropdownCombobox = props => {
 					})
 				}
 			case useCombobox.stateChangeTypes.InputBlur:
+				console.log('inpublur')
 				setHasFocus(false)
 				return {
 					action: actionAndChanges.changes
@@ -84,25 +115,39 @@ const DropdownCombobox = props => {
 		defaultIsOpen: true,
 		initialIsOpen: true,
 		initialHighlightedIndex: 0,
-		onInputValueChange: ({ inputValue }) => {
-			setInputItems(
-				options.filter(item => {
-					return item.key.toLowerCase().startsWith(inputValue.toLowerCase())
-				})
-			)
-			// check if the input value is present in any of the option
-			const formattedInputValue = inputValue.trim().toLowerCase()
-			const isPresentInOptions = options.find(
-				option => option.key === formattedInputValue
-			)
-			if (isPresentInOptions) {
-				setValueType(isPresentInOptions.type)
-			} else {
-				setValueType('string') // can also use typeof formattedInputValue but it will result in string anyways
-			}
+		// onInputValueChange: ({ inputValue }) => {
+		// 	setInputItems(
+		// 		options.filter(item => {
+		// 			return item.key.toLowerCase().startsWith(inputValue.toLowerCase())
+		// 		})
+		// 	)
+		// 	handleValueTypeChange()
+		// },
+		onOuterClick: () => {
+			setHasFocus(false)
 		},
 		stateReducer
 	})
+
+	const handleValueChangeWrapper = e => {
+		const val = e.target.value
+
+		handleValueChange(e)
+		handleValueTypeChange(val)
+	}
+
+	const handleFocusOff = () => {
+		const option = inputItems[highlightedIndex]
+		if (option) {
+			handleValueChange({
+				target: {
+					value: option.key
+				}
+			})
+			setHasFocus(false)
+		}
+	}
+
 	return (
 		<>
 			{/* <label {...getLabelProps()}>Choose an element:</label> */}
@@ -114,7 +159,7 @@ const DropdownCombobox = props => {
 			>
 				<input
 					{...getInputProps({
-						onChange: handleValueChange,
+						onChange: handleValueChangeWrapper,
 						onKeyDown: onKeyDown,
 						value: inputValue,
 						ref: inputRef,
@@ -124,14 +169,15 @@ const DropdownCombobox = props => {
 					data-valid={valid}
 					data-value-type={valueType}
 				/>
-				{hasFocus && (
+				{hasFocus && !matchesAnInput && (
 					<ul
-						className="expression-list"
+						data-type="expression-list"
 						{...getMenuProps()}
 						style={menuStyles}
 					>
 						{inputItems.map((item, index) => (
 							<li
+								data-type="expression-list-item"
 								style={
 									highlightedIndex === index
 										? { backgroundColor: '#f2f2f2' }

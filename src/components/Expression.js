@@ -17,16 +17,16 @@ const Exp = props => {
 	const [rootFocus, setRootFocus] = useState(false)
 	const expressionRoot = useRef(null)
 	// find function metadata as per the given key.
-	const fnData = options.find(f => f.key === fname)
+	const fnData = options.find(f => f.key === fname.toLowerCase())
 
 	useEffect(() => {
 		// create nodes for all children of the given function
 		const { params } = fnData
-		params.forEach(param => {
-			const refNode = new TreeNode({ data: param, type: 'string' })
+		params.forEach(() => {
+			const refNode = new TreeNode({ data: '', type: 'string' })
 			node.addChild(refNode)
 		})
-	}, [fnData, node])
+	}, [])
 
 	const findNextNode = () => {
 		const initNode = expressionRoot.current.firstElementChild
@@ -102,7 +102,7 @@ const Exp = props => {
 					tabIndex="0"
 					style={{ display: 'flex' }}
 				>
-					{fnData.label} ( {PHDom()} ){' '}
+					{fnData.label} ({PHDom()})
 				</span>
 			</>
 		)
