@@ -164,7 +164,8 @@ const DropdownCombobox = props => {
 						value: inputValue,
 						ref: inputRef,
 						placeholder: inputPlaceholder,
-						onFocus: () => setHasFocus(true)
+						onFocus: () => setHasFocus(true),
+						onBlur: () => setHasFocus(false)
 					})}
 					data-valid={valid}
 					data-value-type={valueType}

@@ -45,7 +45,10 @@ const Drop = props => {
 		setValue(val)
 		if (fnKeys.includes(val.toLowerCase())) {
 			setExp(true)
-			node.setValue({ data: options.find(f => f.key === val), type: 'fn' }) // todo
+			node.setValue({
+				data: options.find(f => f.key === val.toLowerCase()),
+				type: 'fn'
+			}) // todo
 		}
 		if (onChangeFn) onChangeFn(EditorData)
 		// console.log(EditorData.buildExpression())
