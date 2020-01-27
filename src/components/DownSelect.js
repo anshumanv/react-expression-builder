@@ -20,7 +20,6 @@ const DropdownCombobox = props => {
 		expressionInputClass
 	} = props
 	const [inputItems, setInputItems] = useState(options)
-	const [hasFocus, setHasFocus] = useState(false)
 	const [valid, setValid] = useState(true)
 	const [valueType, setValueType] = useState('string')
 	const matchesAnInput = inputItems.find(item => item.label === inputValue)
@@ -90,8 +89,6 @@ const DropdownCombobox = props => {
 					})
 				}
 			case useCombobox.stateChangeTypes.InputBlur:
-				console.log('inpublur')
-				setHasFocus(false)
 				return {
 					action: actionAndChanges.changes
 				}
@@ -102,6 +99,7 @@ const DropdownCombobox = props => {
 
 	const {
 		isOpen,
+		openMenu,
 		selectedItem,
 		getToggleButtonProps,
 		getLabelProps,
@@ -123,9 +121,6 @@ const DropdownCombobox = props => {
 		// 	)
 		// 	handleValueTypeChange()
 		// },
-		onOuterClick: () => {
-			setHasFocus(false)
-		},
 		stateReducer
 	})
 
@@ -134,18 +129,6 @@ const DropdownCombobox = props => {
 
 		handleValueChange(e)
 		handleValueTypeChange(val)
-	}
-
-	const handleFocusOff = () => {
-		const option = inputItems[highlightedIndex]
-		if (option) {
-			handleValueChange({
-				target: {
-					value: option.key
-				}
-			})
-			setHasFocus(false)
-		}
 	}
 
 	return (
@@ -164,13 +147,12 @@ const DropdownCombobox = props => {
 						value: inputValue,
 						ref: inputRef,
 						placeholder: inputPlaceholder,
-						onFocus: () => setHasFocus(true),
-						onBlur: () => setHasFocus(false)
+						onFocus: () => openMenu()
 					})}
 					data-valid={valid}
 					data-value-type={valueType}
 				/>
-				{hasFocus && !matchesAnInput && (
+				{isOpen && !matchesAnInput && (
 					<ul
 						data-type="expression-list"
 						{...getMenuProps()}
