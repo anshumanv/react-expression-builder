@@ -149,7 +149,7 @@ const DropdownCombobox = props => {
 
 	const getInputWidth = () => {
 		if (textRef.current) {
-			return textRef.current.scrollWidth
+			return textRef.current.scrollWidth + 4
 		}
 		return '10rem'
 	}
