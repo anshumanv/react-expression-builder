@@ -201,7 +201,8 @@ const DropdownCombobox = props => {
 								key={`${item.key}${index}`}
 								{...getItemProps({ item, index })}
 							>
-								{item.label}
+								<span>{item.label}</span>
+								<span>{item.keyLabel || ''}</span>
 							</li>
 						))}
 					</ul>
