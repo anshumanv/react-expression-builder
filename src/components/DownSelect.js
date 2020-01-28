@@ -131,6 +131,8 @@ const DropdownCombobox = props => {
 		handleValueTypeChange(val)
 	}
 
+	const showMenu = isOpen && !matchesAnInput && inputItems.length > 0
+
 	return (
 		<>
 			{/* <label {...getLabelProps()}>Choose an element:</label> */}
@@ -152,7 +154,7 @@ const DropdownCombobox = props => {
 					data-valid={valid}
 					data-value-type={valueType}
 				/>
-				{isOpen && !matchesAnInput && (
+				{showMenu && (
 					<ul
 						data-type="expression-list"
 						{...getMenuProps()}
