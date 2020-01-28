@@ -31,14 +31,19 @@ const Exp = props => {
 	const findNextNode = () => {
 		const initNode = expressionRoot.current.firstElementChild
 		if (initNode.dataset.type === 'expression-root') return initNode
-		else return initNode.firstElementChild
+		return initNode.firstElementChild
 	}
 
 	const findPrevNode = () => {
 		let initNode = expressionRoot.current
 		if (initNode.previousElementSibling) {
 			initNode = initNode.previousElementSibling
-			while (initNode.lastElementChild) initNode = initNode.lastElementChild
+			while (
+				initNode.lastElementChild &&
+				initNode.dataset.type === 'expression-root'
+			)
+				initNode = initNode.lastElementChild
+			initNode = initNode.firstElementChild
 		} else {
 			if (initNode.parentElement.dataset.type === 'expression-root')
 				initNode = initNode.parentElement

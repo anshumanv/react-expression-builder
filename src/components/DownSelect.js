@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { useCombobox } from 'downshift'
 
 const menuStyles = {
@@ -6,6 +6,16 @@ const menuStyles = {
 	highlightedIndex: '#f2f2f2',
 	fontWeight: 'normal',
 	position: 'absolute'
+}
+
+const textContentStyle = {
+	position: 'absolute',
+	top: 0,
+	left: 0,
+	visibility: 'hidden',
+	height: 0,
+	overflow: 'scroll',
+	whiteSpace: 'pre'
 }
 
 const DropdownCombobox = props => {
@@ -23,7 +33,7 @@ const DropdownCombobox = props => {
 	const [valid, setValid] = useState(true)
 	const [valueType, setValueType] = useState('string')
 	const matchesAnInput = inputItems.find(item => item.label === inputValue)
-
+	const textRef = useRef()
 	useEffect(() => {
 		setInputItems(
 			options.filter(item => {
@@ -131,6 +141,13 @@ const DropdownCombobox = props => {
 		handleValueTypeChange(val)
 	}
 
+	const getInputWidth = () => {
+		if (textRef.current) {
+			return textRef.current.scrollWidth
+		}
+		return '10rem'
+	}
+
 	const showMenu = isOpen && !matchesAnInput && inputItems.length > 0
 
 	return (
@@ -151,9 +168,15 @@ const DropdownCombobox = props => {
 						placeholder: inputPlaceholder,
 						onFocus: () => openMenu()
 					})}
+					style={{
+						width: getInputWidth()
+					}}
 					data-valid={valid}
 					data-value-type={valueType}
 				/>
+				<div ref={textRef} style={textContentStyle}>
+					{inputValue || inputPlaceholder}
+				</div>
 				{showMenu && (
 					<ul
 						data-type="expression-list"
