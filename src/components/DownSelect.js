@@ -32,7 +32,7 @@ const DropdownCombobox = props => {
 	const [inputItems, setInputItems] = useState(options)
 	const [valid, setValid] = useState(true)
 	const [valueType, setValueType] = useState('string')
-	const matchesAnInput = inputItems.find(item => item.label === inputValue)
+	const matchesAnInput = options.some(item => item.label === inputValue)
 	const textRef = useRef()
 	useEffect(() => {
 		setInputItems(
@@ -192,6 +192,7 @@ const DropdownCombobox = props => {
 						{inputItems.map((item, index) => (
 							<li
 								data-type="expression-list-item"
+								data-item-type={item.type}
 								style={
 									highlightedIndex === index
 										? { backgroundColor: '#f2f2f2' }
