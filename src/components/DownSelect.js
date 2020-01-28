@@ -91,6 +91,12 @@ const DropdownCombobox = props => {
 				if (state.highlightedIndex > -1) {
 					handleValueTypeChange(actionAndChanges.changes.selectedItem.label)
 				}
+
+				// focus again on the input
+				if (inputRef.current) {
+					inputRef.current.focus()
+				}
+
 				return {
 					...actionAndChanges.changes,
 					// if we had an item highlighted in the previous state.
