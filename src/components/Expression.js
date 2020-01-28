@@ -12,7 +12,8 @@ const Exp = props => {
 		setValue,
 		onChangeFn,
 		expressionRootClass = '',
-		expressionInputClass
+		expressionInputClass,
+		validationFn
 	} = props
 	const [rootFocus, setRootFocus] = useState(false)
 	const expressionRoot = useRef(null)
@@ -88,6 +89,7 @@ const Exp = props => {
 					expressionInputClass={expressionInputClass}
 					expressionRootClass={expressionRootClass}
 					node={node.children && node.children[i]}
+					validationFn={validationFn}
 					initialFocus={i === 0}
 					placeholder={param}
 				/>

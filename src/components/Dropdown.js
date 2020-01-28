@@ -156,6 +156,7 @@ const Drop = props => {
 			setValue={setValue}
 			node={node}
 			onChangeFn={onChangeFn}
+			validationFn={validationFn}
 			expressionRootClass={expressionRootClass}
 			expressionInputClass={expressionInputClass}
 			fname={value}
