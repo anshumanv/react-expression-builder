@@ -107,7 +107,7 @@ const Exp = props => {
 					tabIndex="0"
 					style={{ display: 'flex' }}
 				>
-					{fnData.label} ({PHDom()})
+					{fnData.label}({PHDom()})
 				</span>
 			</>
 		)
