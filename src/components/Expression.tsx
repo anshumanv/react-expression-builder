@@ -1,8 +1,11 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, FC, SyntheticEvent } from 'react'
 import Drop from './Dropdown'
 import { TreeNode } from './DataStructure'
+import { ExpressionRootPropTypes, OptionType } from './types'
 
-const Exp = props => {
+const Expression: FC<ExpressionRootPropTypes> = (
+	props: ExpressionRootPropTypes
+) => {
 	const {
 		fname,
 		node,
@@ -12,38 +15,41 @@ const Exp = props => {
 		setValue,
 		onChangeFn,
 		expressionRootClass = '',
-		expressionInputClass,
+		expressionInputClass = '',
 		validationFn
 	} = props
 	const [rootFocus, setRootFocus] = useState(false)
 	const expressionRoot = useRef(null)
 	// find function metadata as per the given key.
-	const fnData = options.find(f => f.key === fname.toLowerCase())
+	const fnData: OptionType | undefined = options.find(
+		f => f.key === fname.toLowerCase()
+	)
 
 	useEffect(() => {
 		// create nodes for all children of the given function
-		const { params } = fnData
-		params.forEach(() => {
+		const { params } = fnData!
+		params!.forEach(() => {
 			const refNode = new TreeNode({ data: '', type: 'string' })
 			node.addChild(refNode)
 		})
 	}, [])
 
 	const findNextNode = () => {
-		const initNode = expressionRoot.current.firstElementChild
+		const initNode = (expressionRoot.current as any).firstElementChild
 		if (initNode.dataset.type === 'expression-root') return initNode
 		return initNode.firstElementChild
 	}
 
 	const findPrevNode = () => {
-		let initNode = expressionRoot.current
+		let initNode = expressionRoot.current as any
 		if (initNode.previousElementSibling) {
 			initNode = initNode.previousElementSibling
 			while (
 				initNode.lastElementChild &&
 				initNode.dataset.type === 'expression-root'
-			)
+			) {
 				initNode = initNode.lastElementChild
+			}
 			initNode = initNode.firstElementChild
 		} else {
 			if (initNode.parentElement.dataset.type === 'expression-root')
@@ -52,11 +58,12 @@ const Exp = props => {
 		return initNode
 	}
 
-	const handleKeyDown = e => {
+	const handleKeyDown = (e: React.KeyboardEvent<HTMLSpanElement>) => {
 		e.stopPropagation()
 		// remove node when backspace is pressed and expression is in focus
 		switch (e.keyCode) {
 			case 8:
+			case 46:
 				if (rootFocus) {
 					setExp(false)
 					node.clearChildren()
@@ -64,12 +71,10 @@ const Exp = props => {
 				}
 				break
 			case 39:
-				const nextNode = findNextNode()
-				nextNode.focus()
+				findNextNode().focus()
 				break
 			case 37:
-				const prevNode = findPrevNode()
-				prevNode.focus()
+				findPrevNode().focus()
 				break
 			default:
 				return
@@ -78,8 +83,8 @@ const Exp = props => {
 
 	// Build the dom with dropdowns for the parameters of the function
 	const PHDom = () => {
-		const { params } = fnData
-		return params.map((param, i) => {
+		const { params } = fnData!
+		return params!.map((param, i) => {
 			return (
 				<Drop
 					EditorData={EditorData}
@@ -98,23 +103,21 @@ const Exp = props => {
 	}
 	if (fname) {
 		return (
-			<>
-				<span
-					ref={expressionRoot}
-					className={expressionRootClass}
-					data-type="expression-root"
-					onKeyDown={handleKeyDown}
-					onFocus={() => setRootFocus(true)}
-					onBlur={() => setRootFocus(false)}
-					tabIndex="0"
-					style={{ display: 'flex' }}
-				>
-					{fnData.label}({PHDom()})
-				</span>
-			</>
+			<span
+				ref={expressionRoot}
+				className={expressionRootClass}
+				data-type="expression-root"
+				onKeyDown={handleKeyDown}
+				onFocus={() => setRootFocus(true)}
+				onBlur={() => setRootFocus(false)}
+				tabIndex={0}
+				style={{ display: 'flex' }}
+			>
+				{fnData!.label}({PHDom()})
+			</span>
 		)
 	}
-	return <span>loading</span>
+	return null
 }
 
-export default Exp
+export default Expression

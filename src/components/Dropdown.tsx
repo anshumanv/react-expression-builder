@@ -1,8 +1,9 @@
 import React, { useRef, useState, useEffect } from 'react'
 import Exp from './Expression'
 import DownSelect from './DownSelect'
+import { DropdownProps } from './types'
 
-const Drop = props => {
+const Drop = (props: DropdownProps) => {
 	const {
 		placeholder,
 		EditorData,
@@ -15,63 +16,62 @@ const Drop = props => {
 		expressionInputClass
 	} = props
 
-	const [value, setValue] = useState('')
-	const [exp, setExp] = useState(false)
-	const [hasFocus, setHasFocus] = useState(true)
-	// use it later for validation
-	const [valid, setValid] = useState(true)
-	const dropRef = useRef(null)
+	const [value, setValue] = useState<string>('')
+	const [exp, setExp] = useState<boolean>(false)
+	const dropRef = useRef<HTMLInputElement>(null)
 
 	useEffect(() => {
 		if (dropRef.current && initialFocus) {
 			dropRef.current.focus()
-			// console.log(dropRef.current, initialFocus)
 		}
-		// console.log(node)
-		// console.log(document.activeElement)
-		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [dropRef.current])
 
-	const fnKeys = options.filter(fn => fn.type === 'function').map(fn => fn.key)
-	const stringRegex = /"([^\\"]|\\")*"/
-	// const handleBlur = e => {
-	// 	if (!value) setDrop(false)
-	// }
+	const fnKeys: string[] = options
+		.filter(fn => fn.type === 'function')
+		.map(fn => fn.key)
+
+	const getValueType = value => {
+		if (fnKeys.includes(value.toLowerCase())) return 'fn'
+		const listOption = options.find(option => option.label === value)
+		return listOption ? listOption.type : 'string'
+	}
+
+	const getValueData = (type, value) => {
+		if (type === 'fn') {
+			return options.find(f => f.key === value.toLowerCase())
+		}
+		return value
+	}
 
 	const handleValueChange = e => {
 		const val = e.target.value
-		// const newNode = new TreeNode(val)
-		node.setValue({ data: val, type: 'string' })
+		const valueType = getValueType(val)
+		const valueData = getValueData(valueType, val)
 		setValue(val)
-		if (fnKeys.includes(val.toLowerCase())) {
-			setExp(true)
-			node.setValue({
-				data: options.find(f => f.key === val.toLowerCase()),
-				type: 'fn'
-			}) // todo
-		}
+		node.setValue({ data: valueData, type: valueType })
+
+		// In case the input is a function, scaffold it's params
+		if (valueType === 'fn') setExp(true)
+
 		if (onChangeFn) onChangeFn(EditorData)
-		// console.log(EditorData.buildExpression())
 	}
 
 	const getNextNode = () => {
-		let currElement = dropRef.current.parentElement
+		let currElement
+		if (dropRef.current) {
+			currElement = dropRef.current.parentElement
+		}
 		// if the present element has a next sibling, directly switch to next
 		if (currElement.nextElementSibling)
 			currElement = currElement.nextElementSibling
-		// else keep going levels up till you find a next node
-		// else {
-		// 	currElement = currElement.parentNode
-		// }
-		// this is when you want to skip the top levels and only play in text fields
+		// this is when you want to skip the top levels and only switch in text fields
 		else {
-			while (!currElement.nextElementSibling)
+			while (!currElement.nextElementSibling) {
 				currElement = currElement.parentElement
+				if (currElement.dataset.type === 'knit-ui_extractor-root') return
+			}
 			currElement = currElement.nextElementSibling
 		}
-		// while (rootClasses.includes(finalElement.dataset.type)) {
-		// 	finalElement = finalElement.firstElementChild
-		// }
 
 		if (currElement.dataset.type !== 'expression-root')
 			currElement = currElement.firstElementChild
@@ -80,20 +80,16 @@ const Drop = props => {
 	}
 
 	const getPrevNode = () => {
-		let currElement = dropRef.current.parentElement
+		let currElement
+		if (dropRef.current) {
+			currElement = dropRef.current.parentElement
+		}
 		// if the present element has a next sibling, directly switch to next
 		if (currElement.previousElementSibling)
 			currElement = currElement.previousElementSibling
-		// else {
-		// 	currElement = currElement.parentNode
-		// }
-		// else keep going levels up till you find a next node
 		else {
 			if (!currElement.previousElementSibling)
 				currElement = currElement.parentElement
-			// if (currElement.dataset.type === 'expression-root' && initialFocus)
-			// 	return currElement
-			// currElement = currElement.lastElementChild
 		}
 		// some transitions as per the element we arrive on
 		while (currElement.dataset.type === 'expression-root' && !initialFocus) {
@@ -102,39 +98,33 @@ const Drop = props => {
 		if (currElement.dataset.type === 'expression-input-root') {
 			currElement = currElement.firstElementChild
 		}
-		// console.log(currElement)
 		return currElement
 	}
 
 	const handleDir = e => {
 		e.stopPropagation()
-		const inputNode = dropRef.current
+		const inputNode = dropRef.current!
 		switch (e.keyCode) {
 			case 39:
-				// only when I'm at last caret position
+				// only  at last caret position
 				if (inputNode.selectionStart !== inputNode.value.length) return
 				e.preventDefault()
 				const nextNode = getNextNode()
-				nextNode && nextNode.focus()
-				return
+				if (nextNode) nextNode.focus()
+				break
 			case 37:
 				// only when at caret position is 0
 				if (inputNode.selectionStart !== 0) return
 				e.preventDefault()
 				const prevNode = getPrevNode()
-				prevNode && prevNode.focus()
-				return
+				if (prevNode) prevNode.focus()
+				break
 			default:
-				return
+				break
 		}
 	}
 
 	if (!exp) {
-		// this is an approximation
-		// let inputLen = `${(value
-		// 	? value.length
-		// 	: placeholder && placeholder.length) * 8}px`
-		// if (dropRef.current) inputLen = dropRef.current.scrollWidth
 		return (
 			<DownSelect
 				inputRef={dropRef}

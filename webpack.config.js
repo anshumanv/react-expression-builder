@@ -3,7 +3,7 @@ var PeerDepsExternalsPlugin = require('peer-deps-externals-webpack-plugin')
 
 module.exports = {
 	mode: 'production',
-	entry: './src/index.js',
+	entry: './src/index.tsx',
 	plugins: [new PeerDepsExternalsPlugin()],
 	output: {
 		path: path.resolve('dist'),
@@ -13,7 +13,7 @@ module.exports = {
 	module: {
 		rules: [
 			{
-				test: /\.js?$/,
+				test: /\.(tsx|ts)?$/,
 				exclude: /(node_modules)/,
 				use: 'babel-loader'
 			}

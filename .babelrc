@@ -1,4 +1,10 @@
 {
 	"presets": ["@babel/preset-env", "@babel/preset-react"],
-	"plugins": ["@babel/plugin-proposal-class-properties"]
+	"plugins": ["@babel/plugin-proposal-class-properties"],
+	"overrides": [
+		{
+			"test": ["./src/**/*.tsx", "./src/*.tsx", "./src/*.ts", "./src/**/*.ts"],
+			"presets": ["@babel/preset-typescript"]
+		}
+	]
 }

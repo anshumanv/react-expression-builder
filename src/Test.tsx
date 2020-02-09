@@ -1,6 +1,6 @@
 import React from 'react'
 import Drop, { EditorState, TreeNode } from '.'
-import { functions, staticValues } from './helpers/functions'
+import { functions, staticValues } from './utils/helpers'
 
 const options = [...functions, ...staticValues]
 
@@ -21,9 +21,8 @@ const validationFn = val => {
 }
 
 const Root = props => {
-	const EditorData = new EditorState()
 	const rootNode = new TreeNode(null)
-	EditorData.initRoot(rootNode)
+	const EditorData = new EditorState(rootNode)
 
 	return (
 		<>

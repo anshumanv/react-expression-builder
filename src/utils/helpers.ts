@@ -13,18 +13,18 @@ export const functions = [
 		value: 'CONCAT (dim1, dim2)',
 		label: 'CONCAT',
 		key: 'concat',
-		keyLabel: 'f(x)',
 		params: ['dim1', 'dim2'],
 		type: 'function',
+		keyLabel: 'f(x)',
 		helper: 'Returns the concatenation of two strings.'
 	},
 	{
 		value: 'SUB (dim, starting_at, ending_at)',
 		label: 'SUB',
 		key: 'sub',
-		keyLabel: 'f(x)',
 		params: ['dim', 'starting_at', 'ending_at'],
 		type: 'function',
+		keyLabel: 'f(x)',
 		helper:
 			'Returns a substring between specified character indices. Index starts from 0'
 	},
@@ -32,9 +32,9 @@ export const functions = [
 		value: 'EXTRACT (dim, prefix_string, suffix_string)',
 		label: 'EXTRACT',
 		key: 'extract',
-		keyLabel: 'f(x)',
 		params: ['dim1', 'prefix_string', 'suffix_string'],
 		type: 'function',
+		keyLabel: 'f(x)',
 		helper:
 			'Returns a substring between the first prefix_string and first suffix_string'
 	}
