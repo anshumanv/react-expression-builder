@@ -25,6 +25,7 @@
 - Easy custom styling as per input
 - Input validation at granular level
 - Customizable options
+- Single Dependency, no bloat
 
 ### Installation
 
