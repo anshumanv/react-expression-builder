@@ -1,5 +1,9 @@
 src
 demo
+coverage
+.github
+tsconfig.json
+jest.config.js
 .babelrc
 webpack.config.js
 styleguide.config.js
