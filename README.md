@@ -31,42 +31,32 @@ yarn add react-expression-builder
 
 ### Usage
 
-- With a given pokémon name (case insensitive)
-
 ```js
-import ExpressionBuilder, { EditorState, TreeNode } from 'react-expression-builder'
+import ExpressionBuilder from 'react-expression-builder'
 
 //1. accumulate your options
 // fn must have an additional property 'params' -  eg `params: ['dim', 'delimiter', 'occurrence_number']`
 const options = [{..., key: '...', type: '...', label: '...',...}, {...}]
 
-//2. Initialize the data structure to contain expression data
-const EditorData = new EditorState() // global editor state
-const rootNode = new TreeNode(null) // root node
-EditorData.initRoot(rootNode)
-
 // regex to match entires within ""
 const stringRegex = /"([^\\"]|\\")*"/
 
-// Optional - Function called on every state change
+// Optional - Function called on every state change, store your changes on the server
 const onChangeFn = editorState => console.log(editorState, editorState.buildExpression())
 
-// Optional - class for the expression element
+// Optional - class for the expression element, use for optional styling
 const expressionRootClass = 'root-class'
 
 // Optional - class for the input container
 const expressionInputClass = 'input-class'
 
 // Optional - Function which validates all the input values and returns a bool.
-//
 const validationFn = val => {
 	return !isNaN(val) || stringRegex.test(val)
 }
 
 <ExpressionBuilder
-  EditorData={EditorData}
   onChangeFn={onChangeFn}
-  node={rootNode}
   expressionRootClass={expressionRootClass}
   expressionInputClass={expressionInputClass}
   options={options}
