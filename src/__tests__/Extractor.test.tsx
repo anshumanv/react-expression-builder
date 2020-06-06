@@ -1,7 +1,7 @@
+import { cleanup, fireEvent, render } from '@testing-library/react'
 import React from 'react'
 import Extractor from '../'
-import { cleanup, fireEvent, render } from '../../../common/TestUtil'
-import { functions, staticValues } from '../helpers'
+import { functions, staticValues } from '../utils'
 
 afterEach(cleanup)
 
