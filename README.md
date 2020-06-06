@@ -11,6 +11,9 @@
 <a href="https://github.com/anshumanv/react-expression-builder">
   <img src="https://img.shields.io/github/license/anshumanv/react-expression-builder.svg?style=for-the-badge" align="center">
 </a>
+
+![Tests](https://github.com/anshumanv/react-expression-builder/workflows/react-expression-builder%20test%20CI/badge.svg?branch=master)
+
 </p>
 
 <hr>
