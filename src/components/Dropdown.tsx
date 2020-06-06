@@ -1,7 +1,7 @@
-import React, { useRef, useState, useEffect } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
+import { DropdownProps } from '../utils/Types'
+import DownSelect from './DownshiftSelect'
 import Exp from './Expression'
-import DownSelect from './DownSelect'
-import { DropdownProps } from './types'
 
 const Drop = (props: DropdownProps) => {
 	const {
@@ -66,9 +66,13 @@ const Drop = (props: DropdownProps) => {
 			currElement = currElement.nextElementSibling
 		// this is when you want to skip the top levels and only switch in text fields
 		else {
-			while (!currElement.nextElementSibling) {
+			while (currElement && !currElement.nextElementSibling) {
 				currElement = currElement.parentElement
-				if (currElement.dataset.type === 'knit-ui_extractor-root') return
+				if (
+					currElement &&
+					currElement.dataset.type === 'knit-ui_extractor-root'
+				)
+					return
 			}
 			currElement = currElement.nextElementSibling
 		}

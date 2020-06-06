@@ -1,0 +1,735 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Extractor builds data structure properly Builds correct string on input 1`] = `
+<DocumentFragment>
+  <span
+    class=""
+    data-type="expression-root"
+    style="display: flex;"
+    tabindex="0"
+  >
+    CONCAT(
+    <div
+      aria-expanded="false"
+      aria-haspopup="listbox"
+      aria-owns="downshift-20-menu"
+      class=""
+      data-type="expression-input-root"
+      role="combobox"
+    >
+      <input
+        aria-autocomplete="list"
+        aria-controls="downshift-20-menu"
+        aria-labelledby="downshift-20-label"
+        autocomplete="off"
+        data-valid="true"
+        data-value-type="dimension"
+        id="downshift-19-input"
+        placeholder="dim1"
+        style="width: 8px;"
+        value="Ad"
+      />
+      <div
+        style="position: absolute; top: 0px; left: 0px; visibility: hidden; height: 0px; overflow: scroll; white-space: pre;"
+      >
+        Ad
+      </div>
+    </div>
+    <div
+      aria-expanded="true"
+      aria-haspopup="listbox"
+      aria-owns="downshift-22-menu"
+      class=""
+      data-type="expression-input-root"
+      role="combobox"
+    >
+      <input
+        aria-activedescendant="downshift-22-item-0"
+        aria-autocomplete="list"
+        aria-controls="downshift-22-menu"
+        aria-labelledby="downshift-22-label"
+        autocomplete="off"
+        data-valid="true"
+        data-value-type="string"
+        id="downshift-21-input"
+        placeholder="dim2"
+        style="width: 8px;"
+        value="\\"_\\""
+      />
+      <div
+        style="position: absolute; top: 0px; left: 0px; visibility: hidden; height: 0px; overflow: scroll; white-space: pre;"
+      >
+        "_"
+      </div>
+    </div>
+    )
+  </span>
+</DocumentFragment>
+`;
+
+exports[`Extractor builds data structure properly Fires the onChange function 1`] = `
+<DocumentFragment>
+  <div
+    aria-expanded="true"
+    aria-haspopup="listbox"
+    aria-owns="downshift-16-menu"
+    data-type="expression-input-root"
+    role="combobox"
+  >
+    <input
+      aria-autocomplete="list"
+      aria-controls="downshift-16-menu"
+      aria-labelledby="downshift-16-label"
+      autocomplete="off"
+      data-valid="true"
+      data-value-type="dimension"
+      id="downshift-15-input"
+      style="width: 8px;"
+      value="Ad"
+    />
+    <div
+      style="position: absolute; top: 0px; left: 0px; visibility: hidden; height: 0px; overflow: scroll; white-space: pre;"
+    >
+      Ad
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Extractor renders properly Applies correct data attributes 1`] = `
+<DocumentFragment>
+  <div
+    aria-expanded="true"
+    aria-haspopup="listbox"
+    aria-owns="downshift-14-menu"
+    data-type="expression-input-root"
+    role="combobox"
+  >
+    <input
+      aria-autocomplete="list"
+      aria-controls="downshift-14-menu"
+      aria-labelledby="downshift-14-label"
+      autocomplete="off"
+      data-valid="true"
+      data-value-type="dimension"
+      id="downshift-13-input"
+      style="width: 8px;"
+      value="Ad"
+    />
+    <div
+      style="position: absolute; top: 0px; left: 0px; visibility: hidden; height: 0px; overflow: scroll; white-space: pre;"
+    >
+      Ad
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Extractor renders properly Hides options list on blur 1`] = `
+<DocumentFragment>
+  <div
+    aria-expanded="false"
+    aria-haspopup="listbox"
+    aria-owns="downshift-12-menu"
+    data-type="expression-input-root"
+    role="combobox"
+  >
+    <input
+      aria-autocomplete="list"
+      aria-controls="downshift-12-menu"
+      aria-labelledby="downshift-12-label"
+      autocomplete="off"
+      data-valid="true"
+      data-value-type="string"
+      id="downshift-11-input"
+      style="width: 8px;"
+      value=""
+    />
+    <div
+      style="position: absolute; top: 0px; left: 0px; visibility: hidden; height: 0px; overflow: scroll; white-space: pre;"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Extractor renders properly Renders correctly 1`] = `
+<DocumentFragment>
+  <div
+    aria-expanded="true"
+    aria-haspopup="listbox"
+    aria-owns="downshift-2-menu"
+    data-type="expression-input-root"
+    role="combobox"
+  >
+    <input
+      aria-activedescendant="downshift-2-item-0"
+      aria-autocomplete="list"
+      aria-controls="downshift-2-menu"
+      aria-labelledby="downshift-2-label"
+      autocomplete="off"
+      data-valid="true"
+      data-value-type="string"
+      id="downshift-1-input"
+      style="width: 8px;"
+      value=""
+    />
+    <div
+      style="position: absolute; top: 0px; left: 0px; visibility: hidden; height: 0px; overflow: scroll; white-space: pre;"
+    />
+    <ul
+      aria-labelledby="downshift-2-label"
+      data-type="expression-list"
+      id="downshift-2-menu"
+      role="listbox"
+      style="background-color: white; font-weight: normal; position: absolute;"
+    >
+      <li
+        aria-selected="true"
+        data-item-type="function"
+        data-type="expression-list-item"
+        id="downshift-2-item-0"
+        role="option"
+        style="background-color: rgb(242, 242, 242);"
+      >
+        <span>
+          SPLIT
+        </span>
+      </li>
+      <li
+        aria-selected="false"
+        data-item-type="function"
+        data-type="expression-list-item"
+        id="downshift-2-item-1"
+        role="option"
+      >
+        <span>
+          CONCAT
+        </span>
+      </li>
+      <li
+        aria-selected="false"
+        data-item-type="function"
+        data-type="expression-list-item"
+        id="downshift-2-item-2"
+        role="option"
+      >
+        <span>
+          SUB
+        </span>
+      </li>
+      <li
+        aria-selected="false"
+        data-item-type="function"
+        data-type="expression-list-item"
+        id="downshift-2-item-3"
+        role="option"
+      >
+        <span>
+          EXTRACT
+        </span>
+      </li>
+      <li
+        aria-selected="false"
+        data-item-type="dimension"
+        data-type="expression-list-item"
+        id="downshift-2-item-4"
+        role="option"
+      >
+        <span>
+          Account
+        </span>
+      </li>
+      <li
+        aria-selected="false"
+        data-item-type="dimension"
+        data-type="expression-list-item"
+        id="downshift-2-item-5"
+        role="option"
+      >
+        <span>
+          Ad
+        </span>
+      </li>
+    </ul>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Extractor renders properly Scaffolds an expression on typing one 1`] = `
+<DocumentFragment>
+  <span
+    class=""
+    data-type="expression-root"
+    style="display: flex;"
+    tabindex="0"
+  >
+    SPLIT(
+    <div
+      aria-expanded="true"
+      aria-haspopup="listbox"
+      aria-owns="downshift-6-menu"
+      class=""
+      data-type="expression-input-root"
+      role="combobox"
+    >
+      <input
+        aria-activedescendant="downshift-6-item-0"
+        aria-autocomplete="list"
+        aria-controls="downshift-6-menu"
+        aria-labelledby="downshift-6-label"
+        autocomplete="off"
+        data-valid="true"
+        data-value-type="string"
+        id="downshift-5-input"
+        placeholder="dim"
+        style="width: 8px;"
+        value=""
+      />
+      <div
+        style="position: absolute; top: 0px; left: 0px; visibility: hidden; height: 0px; overflow: scroll; white-space: pre;"
+      >
+        dim
+      </div>
+      <ul
+        aria-labelledby="downshift-6-label"
+        data-type="expression-list"
+        id="downshift-6-menu"
+        role="listbox"
+        style="background-color: white; font-weight: normal; position: absolute;"
+      >
+        <li
+          aria-selected="true"
+          data-item-type="function"
+          data-type="expression-list-item"
+          id="downshift-6-item-0"
+          role="option"
+          style="background-color: rgb(242, 242, 242);"
+        >
+          <span>
+            SPLIT
+          </span>
+        </li>
+        <li
+          aria-selected="false"
+          data-item-type="function"
+          data-type="expression-list-item"
+          id="downshift-6-item-1"
+          role="option"
+        >
+          <span>
+            CONCAT
+          </span>
+        </li>
+        <li
+          aria-selected="false"
+          data-item-type="function"
+          data-type="expression-list-item"
+          id="downshift-6-item-2"
+          role="option"
+        >
+          <span>
+            SUB
+          </span>
+        </li>
+        <li
+          aria-selected="false"
+          data-item-type="function"
+          data-type="expression-list-item"
+          id="downshift-6-item-3"
+          role="option"
+        >
+          <span>
+            EXTRACT
+          </span>
+        </li>
+        <li
+          aria-selected="false"
+          data-item-type="dimension"
+          data-type="expression-list-item"
+          id="downshift-6-item-4"
+          role="option"
+        >
+          <span>
+            Account
+          </span>
+        </li>
+        <li
+          aria-selected="false"
+          data-item-type="dimension"
+          data-type="expression-list-item"
+          id="downshift-6-item-5"
+          role="option"
+        >
+          <span>
+            Ad
+          </span>
+        </li>
+      </ul>
+    </div>
+    <div
+      aria-expanded="false"
+      aria-haspopup="listbox"
+      aria-owns="downshift-8-menu"
+      class=""
+      data-type="expression-input-root"
+      role="combobox"
+    >
+      <input
+        aria-autocomplete="list"
+        aria-controls="downshift-8-menu"
+        aria-labelledby="downshift-8-label"
+        autocomplete="off"
+        data-valid="true"
+        data-value-type="string"
+        id="downshift-7-input"
+        placeholder="delimiter"
+        style="width: 8px;"
+        value=""
+      />
+      <div
+        style="position: absolute; top: 0px; left: 0px; visibility: hidden; height: 0px; overflow: scroll; white-space: pre;"
+      >
+        delimiter
+      </div>
+    </div>
+    <div
+      aria-expanded="false"
+      aria-haspopup="listbox"
+      aria-owns="downshift-10-menu"
+      class=""
+      data-type="expression-input-root"
+      role="combobox"
+    >
+      <input
+        aria-autocomplete="list"
+        aria-controls="downshift-10-menu"
+        aria-labelledby="downshift-10-label"
+        autocomplete="off"
+        data-valid="true"
+        data-value-type="string"
+        id="downshift-9-input"
+        placeholder="occurrence_number"
+        style="width: 8px;"
+        value=""
+      />
+      <div
+        style="position: absolute; top: 0px; left: 0px; visibility: hidden; height: 0px; overflow: scroll; white-space: pre;"
+      >
+        occurrence_number
+      </div>
+    </div>
+    )
+  </span>
+</DocumentFragment>
+`;
+
+exports[`Keyboard events work properly Should delete the expression root on pressing backspace  1`] = `
+<DocumentFragment>
+  <div
+    aria-expanded="true"
+    aria-haspopup="listbox"
+    aria-owns="downshift-36-menu"
+    data-type="expression-input-root"
+    role="combobox"
+  >
+    <input
+      aria-activedescendant="downshift-36-item-0"
+      aria-autocomplete="list"
+      aria-controls="downshift-36-menu"
+      aria-labelledby="downshift-36-label"
+      autocomplete="off"
+      data-valid="true"
+      data-value-type="string"
+      id="downshift-35-input"
+      style="width: 8px;"
+      value=""
+    />
+    <div
+      style="position: absolute; top: 0px; left: 0px; visibility: hidden; height: 0px; overflow: scroll; white-space: pre;"
+    />
+    <ul
+      aria-labelledby="downshift-36-label"
+      data-type="expression-list"
+      id="downshift-36-menu"
+      role="listbox"
+      style="background-color: white; font-weight: normal; position: absolute;"
+    >
+      <li
+        aria-selected="true"
+        data-item-type="function"
+        data-type="expression-list-item"
+        id="downshift-36-item-0"
+        role="option"
+        style="background-color: rgb(242, 242, 242);"
+      >
+        <span>
+          SPLIT
+        </span>
+      </li>
+      <li
+        aria-selected="false"
+        data-item-type="function"
+        data-type="expression-list-item"
+        id="downshift-36-item-1"
+        role="option"
+      >
+        <span>
+          CONCAT
+        </span>
+      </li>
+      <li
+        aria-selected="false"
+        data-item-type="function"
+        data-type="expression-list-item"
+        id="downshift-36-item-2"
+        role="option"
+      >
+        <span>
+          SUB
+        </span>
+      </li>
+      <li
+        aria-selected="false"
+        data-item-type="function"
+        data-type="expression-list-item"
+        id="downshift-36-item-3"
+        role="option"
+      >
+        <span>
+          EXTRACT
+        </span>
+      </li>
+      <li
+        aria-selected="false"
+        data-item-type="dimension"
+        data-type="expression-list-item"
+        id="downshift-36-item-4"
+        role="option"
+      >
+        <span>
+          Account
+        </span>
+      </li>
+      <li
+        aria-selected="false"
+        data-item-type="dimension"
+        data-type="expression-list-item"
+        id="downshift-36-item-5"
+        role="option"
+      >
+        <span>
+          Ad
+        </span>
+      </li>
+    </ul>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Keyboard events work properly Should navigate to the expression root on pressing left on first param 1`] = `
+<DocumentFragment>
+  <span
+    class=""
+    data-type="expression-root"
+    style="display: flex;"
+    tabindex="0"
+  >
+    CONCAT(
+    <div
+      aria-expanded="false"
+      aria-haspopup="listbox"
+      aria-owns="downshift-26-menu"
+      class=""
+      data-type="expression-input-root"
+      role="combobox"
+    >
+      <input
+        aria-autocomplete="list"
+        aria-controls="downshift-26-menu"
+        aria-labelledby="downshift-26-label"
+        autocomplete="off"
+        data-valid="true"
+        data-value-type="string"
+        id="downshift-25-input"
+        placeholder="dim1"
+        style="width: 8px;"
+        value=""
+      />
+      <div
+        style="position: absolute; top: 0px; left: 0px; visibility: hidden; height: 0px; overflow: scroll; white-space: pre;"
+      >
+        dim1
+      </div>
+    </div>
+    <div
+      aria-expanded="false"
+      aria-haspopup="listbox"
+      aria-owns="downshift-28-menu"
+      class=""
+      data-type="expression-input-root"
+      role="combobox"
+    >
+      <input
+        aria-autocomplete="list"
+        aria-controls="downshift-28-menu"
+        aria-labelledby="downshift-28-label"
+        autocomplete="off"
+        data-valid="true"
+        data-value-type="string"
+        id="downshift-27-input"
+        placeholder="dim2"
+        style="width: 8px;"
+        value=""
+      />
+      <div
+        style="position: absolute; top: 0px; left: 0px; visibility: hidden; height: 0px; overflow: scroll; white-space: pre;"
+      >
+        dim2
+      </div>
+    </div>
+    )
+  </span>
+</DocumentFragment>
+`;
+
+exports[`Keyboard events work properly Should navigate to the next param on pressing right  1`] = `
+<DocumentFragment>
+  <span
+    class=""
+    data-type="expression-root"
+    style="display: flex;"
+    tabindex="0"
+  >
+    CONCAT(
+    <div
+      aria-expanded="false"
+      aria-haspopup="listbox"
+      aria-owns="downshift-10-menu"
+      class=""
+      data-type="expression-input-root"
+      role="combobox"
+    >
+      <input
+        aria-autocomplete="list"
+        aria-controls="downshift-10-menu"
+        aria-labelledby="downshift-10-label"
+        autocomplete="off"
+        data-valid="true"
+        data-value-type="string"
+        id="downshift-9-input"
+        placeholder="dim1"
+        style="width: 8px;"
+        value=""
+      />
+      <div
+        style="position: absolute; top: 0px; left: 0px; visibility: hidden; height: 0px; overflow: scroll; white-space: pre;"
+      >
+        dim1
+      </div>
+    </div>
+    <div
+      aria-expanded="true"
+      aria-haspopup="listbox"
+      aria-owns="downshift-12-menu"
+      class=""
+      data-type="expression-input-root"
+      role="combobox"
+    >
+      <input
+        aria-activedescendant="downshift-12-item-0"
+        aria-autocomplete="list"
+        aria-controls="downshift-12-menu"
+        aria-labelledby="downshift-12-label"
+        autocomplete="off"
+        data-valid="true"
+        data-value-type="string"
+        id="downshift-11-input"
+        placeholder="dim2"
+        style="width: 8px;"
+        value=""
+      />
+      <div
+        style="position: absolute; top: 0px; left: 0px; visibility: hidden; height: 0px; overflow: scroll; white-space: pre;"
+      >
+        dim2
+      </div>
+      <ul
+        aria-labelledby="downshift-12-label"
+        data-type="expression-list"
+        id="downshift-12-menu"
+        role="listbox"
+        style="background-color: white; font-weight: normal; position: absolute;"
+      >
+        <li
+          aria-selected="true"
+          data-item-type="function"
+          data-type="expression-list-item"
+          id="downshift-12-item-0"
+          role="option"
+          style="background-color: rgb(242, 242, 242);"
+        >
+          <span>
+            SPLIT
+          </span>
+        </li>
+        <li
+          aria-selected="false"
+          data-item-type="function"
+          data-type="expression-list-item"
+          id="downshift-12-item-1"
+          role="option"
+        >
+          <span>
+            CONCAT
+          </span>
+        </li>
+        <li
+          aria-selected="false"
+          data-item-type="function"
+          data-type="expression-list-item"
+          id="downshift-12-item-2"
+          role="option"
+        >
+          <span>
+            SUB
+          </span>
+        </li>
+        <li
+          aria-selected="false"
+          data-item-type="function"
+          data-type="expression-list-item"
+          id="downshift-12-item-3"
+          role="option"
+        >
+          <span>
+            EXTRACT
+          </span>
+        </li>
+        <li
+          aria-selected="false"
+          data-item-type="dimension"
+          data-type="expression-list-item"
+          id="downshift-12-item-4"
+          role="option"
+        >
+          <span>
+            Account
+          </span>
+        </li>
+        <li
+          aria-selected="false"
+          data-item-type="dimension"
+          data-type="expression-list-item"
+          id="downshift-12-item-5"
+          role="option"
+        >
+          <span>
+            Ad
+          </span>
+        </li>
+      </ul>
+    </div>
+    )
+  </span>
+</DocumentFragment>
+`;

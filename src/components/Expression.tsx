@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useRef, FC, SyntheticEvent } from 'react'
+import React, { FC, useEffect, useRef, useState } from 'react'
+import { TreeNode } from '../utils/DataStructure'
+import { ExpressionRootPropTypes, OptionType } from '../utils/Types'
 import Drop from './Dropdown'
-import { TreeNode } from './DataStructure'
-import { ExpressionRootPropTypes, OptionType } from './types'
 
 const Expression: FC<ExpressionRootPropTypes> = (
 	props: ExpressionRootPropTypes

@@ -1,4 +1,4 @@
-import { NodeType, TreeNodeValueType } from './types'
+import { NodeType, TreeNodeValueType } from './Types'
 
 export class TreeNode {
 	value: TreeNodeValueType

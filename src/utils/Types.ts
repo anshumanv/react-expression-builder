@@ -1,7 +1,7 @@
 import { EditorState, TreeNode } from './DataStructure'
 
 export interface ExtractorProps {
-	onChangeFn: (EditorType) => void
+	onChangeFn: (editorState: EditorType) => void
 	options: OptionType[]
 }
 

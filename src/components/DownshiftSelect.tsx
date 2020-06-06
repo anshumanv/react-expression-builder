@@ -1,12 +1,6 @@
-import React, {
-	useState,
-	useEffect,
-	useRef,
-	CSSProperties,
-	SyntheticEvent
-} from 'react'
 import { useCombobox } from 'downshift'
-import { SelectorPropTypes, OptionType } from './types'
+import React, { CSSProperties, useEffect, useRef, useState } from 'react'
+import { OptionType, SelectorPropTypes } from '../utils/Types'
 
 const menuStyles: CSSProperties = {
 	backgroundColor: 'white',

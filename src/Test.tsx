@@ -1,6 +1,6 @@
 import React from 'react'
-import Drop, { EditorState, TreeNode } from '.'
-import { functions, staticValues } from './utils/helpers'
+import ExpressionBuilder from './index'
+import { functions, staticValues } from './utils/MockData'
 
 const options = [...functions, ...staticValues]
 
@@ -20,21 +20,16 @@ const validationFn = val => {
 	return res
 }
 
-const Root = props => {
-	const rootNode = new TreeNode(null)
-	const EditorData = new EditorState(rootNode)
-
+const Root = () => {
 	return (
 		<>
-			<Drop
-				EditorData={EditorData}
+			<ExpressionBuilder
 				onChangeFn={onChangeFn}
-				node={rootNode}
 				expressionRootClass={expressionRootClass}
 				expressionInputClass={expressionInputClass}
 				options={options}
 				placeholder="Enter your expression"
-				initialFocus={true}
+				initialFocus
 				validationFn={validationFn}
 			/>
 		</>
