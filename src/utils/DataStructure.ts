@@ -3,7 +3,7 @@ import { NodeType, TreeNodeValueType } from './Types'
 export class TreeNode {
 	value: TreeNodeValueType
 	children: NodeType[]
-	constructor(value) {
+	constructor(value: TreeNodeValueType) {
 		this.value = value
 		this.children = []
 	}
@@ -12,7 +12,7 @@ export class TreeNode {
 		this.children.push(node)
 	}
 
-	setValue(val) {
+	setValue(val: TreeNodeValueType) {
 		this.value = val
 	}
 
@@ -24,7 +24,7 @@ export class TreeNode {
 export class EditorState {
 	root: NodeType
 
-	constructor(node) {
+	constructor(node: NodeType) {
 		this.root = node
 	}
 
