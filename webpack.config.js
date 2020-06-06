@@ -10,6 +10,9 @@ module.exports = {
 		filename: 'main.js',
 		libraryTarget: 'commonjs2'
 	},
+	resolve: {
+		extensions: ['.ts', '.tsx', '.js']
+	},
 	module: {
 		rules: [
 			{
