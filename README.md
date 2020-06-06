@@ -58,15 +58,26 @@ const validationFn = val => {
 
 <ExpressionBuilder
   onChangeFn={onChangeFn}
-  expressionRootClass={expressionRootClass}
-  expressionInputClass={expressionInputClass}
   options={options}
-  placeholder="Enter your expression"
+  expressionRootClass={expressionRootClass} // Optional
+  expressionInputClass={expressionInputClass} // Optional
+  placeholder="Enter your expression" // Optional
   initialFocus={true} // if you want your input to be focussed on mount by default
-  validationFn={validationFn}
+  validationFn={validationFn} // Optional
 />
 
 ```
+
+### Features
+
+- Typeahead support
+- Full keyboard navigation and deletion
+- Easy custom styling as per input
+- Input validation at granular level
+
+### Data Structure
+
+Uses an N-Ary tree to contain the expression data, simple recursive function gives you the complete string. Y
 
 ## Author
 

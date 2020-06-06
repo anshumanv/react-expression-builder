@@ -9,7 +9,7 @@ const stringRegex = /"([^\\"]|\\")*"/
 const cb1 = () => alert('valid!')
 const cb2 = () => alert('invalid!')
 
-const onChangeFn = st => console.log('change', st)
+const onChangeFn = st => console.log('change', st.buildExpression())
 const expressionRootClass = 'root-class'
 const expressionInputClass = 'input-class'
 
