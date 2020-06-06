@@ -18,6 +18,14 @@
 
 <p align="center">A bare-bones react component to build function expressions with your data.</p>
 
+### Features
+
+- Typeahead support
+- Full keyboard navigation and deletion
+- Easy custom styling as per input
+- Input validation at granular level
+- Customizable options
+
 ### Installation
 
 Install the package -
@@ -68,16 +76,11 @@ const validationFn = val => {
 
 ```
 
-### Features
-
-- Typeahead support
-- Full keyboard navigation and deletion
-- Easy custom styling as per input
-- Input validation at granular level
-
 ### Data Structure
 
-Uses an N-Ary tree to contain the expression data, simple recursive function gives you the complete string. Y
+Uses an N-Ary tree to store/manipulate the expression data, simple recursive function gives you the complete string. You can check [DataStructure.ts](https://github.com/anshumanv/react-expression-builder/blob/master/src/utils/DataStructure.ts) for the simple implementation, if curious.
+
+Note - This only gives the skeleton and functionality, styling is upto the user, you can either make use of respective classes or wrap this component in a CSS-in-JS solution. For example, a nicely styled solution would look somewhat like [this](https://knitui.design/?path=/story/extractor--basic). This is not complete yet, need more work. Meanwhile, suggestions are appreciated.
 
 ## Author
 
